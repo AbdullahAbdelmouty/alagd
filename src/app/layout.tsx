@@ -1,8 +1,10 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Tajawal } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.rtl.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-const inter = Inter({ subsets: ['latin'] })
+
+const tajawal = Tajawal({ 
+  weight: ['200','300','400', '700','800','900'],
+  subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir='rtl'>
-      <body className={inter.className}>{children}</body>
+      <body className={tajawal.className}>{children}</body>
     </html>
   )
 }

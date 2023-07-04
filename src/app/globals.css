@@ -105,3 +105,24 @@ a {
     color-scheme: dark;
   }
 } */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.orderPage{
+  height: 100vh;
+  background-color: #042141 ;
+}
+
+.btnGreen{
+  background-color: #22b573 !important;
+  border: 0 !important;
+}
+
+.btnImage{
+  background-color: transparent !important;
+  border: 0 !important;
+}
