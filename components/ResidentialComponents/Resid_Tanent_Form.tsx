@@ -1,8 +1,8 @@
 import { useMultistepsForm } from "@/useMultiForm";
 import { FormEvent } from "react";
 import { Button, Form ,InputGroup } from "react-bootstrap";
-import Step_One from "../CommercialComponents/Step_One";
-import Step_Two from "./Form_Steps/Step_Two";
+import Step_One from "./Tanent_Steps/Step_One";
+import Step_Two from "./Tanent_Steps/Step_Two";
 import Step_Three from "./Form_Steps/Step_Three";
 import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
