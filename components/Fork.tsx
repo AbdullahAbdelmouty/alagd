@@ -3,8 +3,7 @@ import { Col, Row } from "react-bootstrap"
 function Fork() {
     return (
         <div>
-        <h1>اختر نوع العقد المطلوب</h1>
-
+        <h2 className="text-center p-3 fw-bold">اختر نوع العقد المطلوب</h2>
         </div>
     )
 }

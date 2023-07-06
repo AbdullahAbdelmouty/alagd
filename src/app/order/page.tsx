@@ -10,7 +10,7 @@ import Residential from '../../../public/img/residential_contract.png';
 import Commercial from '../../../public/img/commercial_contract.png'
 import ResidentialForm from '../../../components/ResidentialForm';
 function Order() {
-  const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm key='2'/>,<div key="4">4</div>]);
+  const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBack} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm key='2'/>,<div key="4">4</div>]);
   return (
 <>
     <Container fluid className='d-flex justify-content-center align-items-center orderPage' >
@@ -23,7 +23,7 @@ function Order() {
         {currentStepIndex ===1 && <Row>
             <Col>
             <button className='btnImage' type='button' onClick={()=>{goTo(2)}}>
-            <Image
+            <Image className='rounded-3'
               src={Residential}
               alt="Picture of the author"
               width={130}
@@ -35,7 +35,7 @@ function Order() {
             </Col>
             <Col>
             <button className='btnImage' type='button' onClick={()=>{goTo(3)}}>
-            <Image
+            <Image className='rounded-3'
               src={Commercial}
               alt="Picture of the author"
               width={130}
@@ -47,9 +47,9 @@ function Order() {
             </Col>
         </Row>}
       </Card.Body>
-      <Card.Body className='d-flex justify-content-center align-items-center'>
+      <Card.Body className='d-flex justify-content-center align-items-center p-0'>
       {isFirstStep&&<Button variant="primary" className='btnGreen' onClick={next}>التالي</Button>}
-        {!isFirstStep&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
+        {!isFirstStep&&<Button variant="primary" className='btnGreen ps-3 pe-3' onClick={customeBack}>{currentStepIndex>1? "الرجوع لتحديد العقار":"رجوع"}</Button>}
       </Card.Body>
     </Card>
     </Container>
