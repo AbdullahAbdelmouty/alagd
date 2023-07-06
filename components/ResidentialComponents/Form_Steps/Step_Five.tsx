@@ -11,7 +11,7 @@ function Step_Five() {
     };
   return (
     <>
-     <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
+     <h3 className='text-center fw-bold'>معلومات الصك</h3>
      <Form.Select aria-label="Default select example">
       <option className='text-center'>نوع الصحك</option>
       <option value="1">صك ورقي</option>

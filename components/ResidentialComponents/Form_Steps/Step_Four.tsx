@@ -12,7 +12,7 @@ function Step_Four() {
     };
   return (
   <>
-      <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
+      <h3 className='text-center fw-bold'>معلومات العقد</h3>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="number" className='text-center' placeholder="مبلغ الإيجار السنوي" />
       </Form.Group>
