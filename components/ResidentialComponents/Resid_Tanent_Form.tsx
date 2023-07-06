@@ -4,8 +4,8 @@ import { Button, Form ,InputGroup } from "react-bootstrap";
 import Step_One from "./Tanent_Steps/Step_One";
 import Step_Two from "./Tanent_Steps/Step_Two";
 import Step_Three from "./Tanent_Steps/Step_Three";
-import Step_Four from "./Form_Steps/Step_Four";
-import Step_Five from "./Form_Steps/Step_Five";
+import Step_Four from "./Tanent_Steps/Step_Four";
+import Step_Five from "./Tanent_Steps/Step_Five";
 import Step_Six from "./Form_Steps/Step_Six";
 function Resid_Tanent_Form() {
     const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo} = useMultistepsForm([<Step_One key="0"/>,<Step_Two key='1'/>,<Step_Three key="2"/>,<Step_Four key="3"/>,<Step_Five key="4"/>,<Step_Six key="4"/>]);
