@@ -9,11 +9,22 @@ import Image from 'next/image';
 import Residential from '../../../public/img/residential_contract.png';
 import Commercial from '../../../public/img/commercial_contract.png'
 import ResidentialForm from '../../../components/ResidentialForm';
+import Head from 'next/head';
+import Script from 'next/script'
+import $ from 'jquery'
+import { useEffect } from 'react';
+import '../../css/bootstrap-datetimepicker.min.css';
+import moment from 'moment';
+import "moment-hijri";
+
+
 function Order() {
   const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBack} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm key='2'/>,<div key="4">4</div>]);
   return (
 <>
+    
     <Container fluid className='d-flex justify-content-center align-items-center orderPage' >
+
       {/* card container that container all the steps of form */}
       <Card style={{ width: '26rem' }} className=' border border-0 rounded-4 p-3'>
       <Card.Body>

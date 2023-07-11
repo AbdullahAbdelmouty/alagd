@@ -1,7 +1,6 @@
 import './globals.css'
 import { Tajawal } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.rtl.min.css';
-
 const tajawal = Tajawal({ 
   weight: ['200','300','400', '700','800','900'],
   subsets: ['latin'] })
@@ -18,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir='rtl'>
-      <body className={tajawal.className}>{children}</body>
+      <body className={tajawal.className}>{children}
+      </body>
+      
     </html>
   )
 }

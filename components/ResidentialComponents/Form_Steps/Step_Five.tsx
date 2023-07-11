@@ -11,50 +11,13 @@ function Step_Five() {
     };
   return (
     <>
-     <h3 className='text-center fw-bold'>معلومات الصك</h3>
-     <Form.Select aria-label="Default select example">
-      <option className='text-center'>نوع الصحك</option>
-      <option value="1">صك ورقي</option>
-      <option value="2">صك الكتروني</option>
-      <option value="3">صك ورثة (المالك متوفي)</option>
-      <option value="4">صك مرهون لبنك او شركة</option>
-      <option value="5">لايوجد صك</option>
-    </Form.Select>
+         <h3 className='text-center fw-bold'>العنوان الوطني للعقار المأجر</h3>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control type="text" className='text-center' placeholder="المدينة" />
+      </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="مبلغ الإيجار السنوي" />
+        <Form.Control type="text" className='text-center' placeholder="الحي" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-        <Form.Control type="date" className='text-center' value={gregorianDate} onChange={handleDateChange}  placeholder="تاريخ الصك" />
-        {gregorianDate && (
-        <p>Hijri Date: {moment(gregorianDate).format('iYYYY/iM/iD')}</p>
-      )}
-      </Form.Group>
-      <Row>
-        <Col>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="الدور" />
-      </Form.Group>
-        </Col>
-        <Col>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="رقم الشقة" />
-      </Form.Group>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="العمارة كم دور؟" />
-      </Form.Group>
-        </Col>
-        <Col>
-        <Form.Select aria-label="Default select example">
-      <option className='text-center'>هل يوجد مصعد؟</option>
-      <option value="1">نعم يوجد</option>
-      <option value="2">لايوجد</option>
-    </Form.Select>
-        </Col>
-      </Row>
     </>
   )
 }

@@ -1,6 +1,9 @@
 import { useMultistepsForm } from "@/useMultiForm";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { Button, Form ,InputGroup } from "react-bootstrap";
+import {DateObject}  from "react-multi-date-picker";
+import arabic from "react-date-object/calendars/arabic"
+import arabic_en from "react-date-object/locales/arabic_en"
 import Step_One from "./Form_Steps/Step_One";
 import Step_Two from "./Form_Steps/Step_Two";
 import Step_Three from "./Form_Steps/Step_Three";
@@ -8,13 +11,75 @@ import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
 import Step_Six from "./Form_Steps/Step_Six";
 function Resid_Owner_Form() {
-    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo} = useMultistepsForm([<Step_One key="0"/>,<Step_Two key='1'/>,<Step_Three key="2"/>,<Step_Four key="3"/>,<Step_Five key="4"/>,<Step_Six key="4"/>]);
+  type FormData = {
+    owner_id: number
+    owner_phone: number
+    owner_br: string
+    owenr_name: string
+    tanent_id: number
+    tanent_name: string
+    tanent_phone: number
+    tanent_br: string
+    contract_price: number
+    contract_date: string
+    elsaq_type: string
+    elsaq_price: number
+    elsaq_date: string
+    floor_num: number
+    apartment_num: number
+    building_floors: number;
+    is_elevator: string
+    city: string
+    boycott: string,
+    owner_check:boolean,
+    tanent_check: boolean
+  }
+  
+  const INITIAL_DATA: FormData = {
+    owner_id: 0,
+    owner_phone: 0,
+    owner_br: "",
+    owenr_name: "",
+    tanent_id: 0,
+    tanent_name: "",
+    tanent_phone: 0,
+    tanent_br: "",
+    contract_price: 0,
+    contract_date: "",
+    elsaq_type: "",
+    elsaq_price: 0,
+    elsaq_date: "",
+    floor_num: 0,
+    apartment_num: 0,
+    building_floors: 0,
+    is_elevator: "",
+    city: "",
+    boycott: "",
+    owner_check: false,
+    tanent_check: false
+  }
+  const [formData, setformData] = useState(INITIAL_DATA)
+  function updateFields(fields: Partial<FormData>) {
+    setformData(prev => {
+      return { ...prev, ...fields }
+    })
+  }
+
+  console.log(formData);
+  
+    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo} = useMultistepsForm([
+    <Step_One key="0" {...formData} updateFields={updateFields} />,
+    <Step_Two key='1'/>,
+    <Step_Three key="2"/>,
+    <Step_Four key="3"/>,
+    <Step_Five key="4"/>,
+  ]);
     const postData = async () => {
       const url = 'https://stage.al3gd.com/order/check-nid'; // Replace with your API endpoint URL
     
       const data = {
-        nid: '1126474327', // Replace with the actual national ID
-        bdate: '1420-07-25', // Replace with the actual birth date
+        nid: formData.owner_id, // Replace with the actual national ID
+        bdate: formData.owner_br, // Replace with the actual birth date
         _token: '(aTzF6tMJaWNg57ELZrm14EXnHsHKZyFWnh8pf9uX', // Replace with the actual token
       };
     
@@ -27,27 +92,37 @@ function Resid_Owner_Form() {
       try {
         const response = await fetch(url, requestOptions);
         const result = await response.json();
-        console.log(result); // Do something with the response
+          if(isFirstStep){
+            if(result.status ===  "success"){
+              updateFields({owner_check: true});
+              updateFields({owenr_name: result.data.full_name})
+          }
+        }
       } catch (error) {
         console.error('Error:', error);
       }
     };
     
-   
     
     function onSubmit(e: FormEvent) {
         e.preventDefault()
         if(isFirstStep){
           postData();
+          console.log(formData);
+          if(!formData.owner_check){
+            return goTo(currentStepIndex)
+          }else{
+            return next();
+          }
+          
         }
         if (!isLastStep) return next()
         alert("dddddddd");
-        
       }
       
   return (
     <Form onSubmit={onSubmit}>
-        <p>`${steps.length}`/`${currentStepIndex+1}`</p>
+        <p>`{steps.length}`/`{currentStepIndex+1}`</p>
         {step}
         {<Button variant="primary" className='btnGreen' type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
         {!isFirstStep&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
