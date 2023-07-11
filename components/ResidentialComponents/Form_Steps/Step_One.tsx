@@ -2,8 +2,7 @@ import {Form} from 'react-bootstrap';
 import DatePicker,{DateObject}  from "react-multi-date-picker"
 import arabic from "react-date-object/calendars/arabic"
 import arabic_en from "react-date-object/locales/arabic_en"
-import { useEffect,useState } from 'react';
-import { log } from 'console';
+import { useState } from 'react';
 
 type OwnerData = {
   owner_id: number
@@ -56,11 +55,6 @@ function Step_One({
         <Form.Control type="tel" className='text-center' placeholder="رقم جوال المالك في أبشر05xxxxx" required value={addPhoneValue(owner_phone)} onChange={e=> updateFields({owner_phone: parseInt(e.target.value,10)})}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-        {/* <Form.Control type="date" className='text-center' value={owner_br.toISOString().split("T")[0]} onChange={e=>{
-               console.log(typeof e.target.value,"dd");
-               console.log( e.target.value);
-               
-           updateFields({owner_br: new Date(e.target.value)})}}  placeholder="تاريخ ميلاد المالك" /> */}
         <DatePicker
         onChange={()=>{
           setTimeout(()=>{

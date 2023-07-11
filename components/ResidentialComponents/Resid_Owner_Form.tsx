@@ -67,9 +67,9 @@ function Resid_Owner_Form() {
 
   console.log(formData);
   
-    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo} = useMultistepsForm([
+    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,isSecondStep,goTo} = useMultistepsForm([
     <Step_One key="0" {...formData} updateFields={updateFields} />,
-    <Step_Two key='1'/>,
+    <Step_Two key='1' {...formData} updateFields={updateFields}/>,
     <Step_Three key="2"/>,
     <Step_Four key="3"/>,
     <Step_Five key="4"/>,
@@ -93,10 +93,20 @@ function Resid_Owner_Form() {
         const response = await fetch(url, requestOptions);
         const result = await response.json();
           if(isFirstStep){
-            if(result.status ===  "success"){
+            if(result.status ===  "success"&&result.data.date_of_birth_hijri === formData.owner_br){
+              console.log(result);
+              
               updateFields({owner_check: true});
-              updateFields({owenr_name: result.data.full_name})
+              updateFields({owenr_name: result.data.full_name})}
           }
+          if(isSecondStep){
+            if(result.status ===  "success"&&result.data.date_of_birth_hijri === formData.tanent_br){
+              console.log(result);
+              
+              updateFields({tanent_check: true});
+              updateFields({tanent_name: result.data.full_name})
+          }
+          
         }
       } catch (error) {
         console.error('Error:', error);
@@ -114,7 +124,15 @@ function Resid_Owner_Form() {
           }else{
             return next();
           }
-          
+        }
+        if(isSecondStep){
+          postData();
+          console.log(formData);
+          if(!formData.tanent_check){
+            return goTo(currentStepIndex)
+          }else{
+            return next();
+          }
         }
         if (!isLastStep) return next()
         alert("dddddddd");

@@ -1,36 +1,83 @@
 import {Form} from 'react-bootstrap';
-import { ChangeEvent , useState } from 'react';
-import moment from 'moment-hijri';
+import DatePicker,{DateObject}  from "react-multi-date-picker"
+import arabic from "react-date-object/calendars/arabic"
+import arabic_en from "react-date-object/locales/arabic_en"
+import { useState } from 'react';
 
-function Step_Two() {
-  const [gregorianDate, setGregorianDate] = useState('');
-  const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedDate = event.target.value;
-    const hijriDate = moment(selectedDate, 'YYYY-MM-DD').format('iYYYY/iM/iD');
-    setGregorianDate(selectedDate);
-    console.log(hijriDate);
-  };
-  
+type tanentData = {
+  tanent_id: number
+  tanent_phone: number
+  tanent_br: string,
+  owenr_name:string,
+  tanent_check: boolean
+}
+type UserFormProps = tanentData & {
+  updateFields: (fields: Partial<tanentData>) => void
+}
+function Step_One({
+  tanent_id,
+  tanent_phone,
+  tanent_br,
+  owenr_name,
+  tanent_check,
+  updateFields,
+}: UserFormProps) {
+  const [value, setValue] = useState('');
+  const addIdValue = (id:number)=>{
+    if(tanent_check){
+      return id;
+    }
+  }
+  const addBrValue = (br:string)=>{
+    if(tanent_check){
+      return br;
+    }
+  }
+
+  const addPhoneValue = (phone:number)=>{
+    if(tanent_check){
+      return phone;
+    }
+  }
   return (
+
     <>
     <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="رقم هوية المستأجر" />
+        <Form.Control type="text" className='text-center'  placeholder="هوية المستأجر" required value={addIdValue(tanent_id)}  onChange={e => {
+          updateFields({ tanent_id: parseInt(e.target.value,10) })
+          }}/>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Control type='text' placeholder="اسم المستأجر الثلاثي" className='text-center'  />
-      </Form.Group>
+         {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
+      </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" />
+        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" required value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-        <Form.Control type="date" className='text-center' value={gregorianDate} onChange={handleDateChange}  placeholder="تاريخ ميلاد المستأجر" />
-        {gregorianDate && (
-        <p>Hijri Date: {moment(gregorianDate).format('iYYYY/iM/iD')}</p>
-      )}
+        <DatePicker
+        onChange={()=>{
+          setTimeout(()=>{
+          const input = document.querySelector('.rmdp-input') as HTMLInputElement | null;
+          const value = input?.value;
+          console.log(value,typeof value);
+          const valueConvert = value?.replaceAll('/','-');
+          if(typeof value === "string"){
+            updateFields({tanent_br: `${valueConvert}`});
+          }
+          
+          },0)
+        }}
+        value={addBrValue(tanent_br)}
+        placeholder="تاريخ ميلاد المستأجر"
+        calendar={arabic}
+        locale={arabic_en}
+        calendarPosition="bottom-right"
+        
+      />
       </Form.Group>
     </>
   )
 }
 
-export default Step_Two
+export default Step_One
