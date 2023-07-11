@@ -24,7 +24,7 @@ function Resid_Owner_Form() {
     contract_date: string
     payment_way: string
     elsaq_type: string
-    elsaq_price: number
+    elsaq_num: number
     elsaq_date: string
     floor_num: number
     apartment_num: number
@@ -37,23 +37,23 @@ function Resid_Owner_Form() {
   }
   
   const INITIAL_DATA: FormData = {
-    owner_id: 0,
-    owner_phone: 0,
+    owner_id: NaN,
+    owner_phone: NaN,
     owner_br: "",
     owenr_name: "",
-    tanent_id: 0,
+    tanent_id: NaN,
     tanent_name: "",
-    tanent_phone: 0,
+    tanent_phone: NaN,
     tanent_br: "",
-    contract_price: 0,
+    contract_price: NaN,
     contract_date: "",
     payment_way:"",
     elsaq_type: "",
-    elsaq_price: 0,
+    elsaq_num: NaN,
     elsaq_date: "",
-    floor_num: 0,
-    apartment_num: 0,
-    building_floors: 0,
+    floor_num: NaN,
+    apartment_num: NaN,
+    building_floors: NaN,
     is_elevator: "",
     city: "",
     boycott: "",
@@ -114,8 +114,30 @@ function Resid_Owner_Form() {
         console.error('Error:', error);
       }
     };
+    ////////////////////////////////////////
+    const submitDate = async () => {
+      const url = 'https://stage.al3gd.com/ar/order/save'; // Replace with your API endpoint URL
     
+      const data = {
+        nid: formData.owner_id, // Replace with the actual national ID
+        bdate: formData.owner_br, // Replace with the actual birth date
+        _token: '(aTzF6tMJaWNg57ELZrm14EXnHsHKZyFWnh8pf9uX', // Replace with the actual token
+      };
     
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      };
+
+      try {
+        const response = await fetch(url, requestOptions);
+        const result = await response.json();
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    //////////////////////////////////////////
     function onSubmit(e: FormEvent) {
         e.preventDefault()
         if(isFirstStep){

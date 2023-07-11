@@ -53,7 +53,7 @@ function Step_Three(
     </Form.Group>
     <div className='d-flex justify-content-center align-items-center'>
     <Form.Label className='m-0'>طريقة الدفع</Form.Label>
-    <Form.Select aria-label="Default select example" onChange={e=>{updateFields({payment_way: e.target.value})
+    <Form.Select aria-label="Default select example" value={payment_way} onChange={e=>{updateFields({payment_way: e.target.value})
     }}>
     <option value="شهري" >شهري</option>
     <option value="كل 3 شهور">كل 3 شهور</option>

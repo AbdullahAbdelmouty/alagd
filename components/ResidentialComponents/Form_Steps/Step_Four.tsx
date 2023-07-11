@@ -6,7 +6,7 @@ import arabic_en from "react-date-object/locales/arabic_en"
 
 type Elsaq={
   elsaq_type: string
-  elsaq_price: number
+  elsaq_num: number
   elsaq_date: string
   floor_num: number
   apartment_num: number
@@ -18,7 +18,7 @@ type UserFormProps = Elsaq & {
 }
 function Step_Four({
   elsaq_type,
-  elsaq_price,
+  elsaq_num,
   elsaq_date,
   floor_num,
   apartment_num,
@@ -38,9 +38,9 @@ function Step_Four({
       <option value="5">لايوجد صك</option>
     </Form.Select>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' onChange={e=>{
-          updateFields({elsaq_price: parseInt(e.target.value)})
-        }} placeholder="مبلغ الإيجار السنوي" />
+        <Form.Control type="number" className='text-center' value={elsaq_num} onChange={e=>{
+          updateFields({elsaq_num: parseInt(e.target.value)})
+        }} placeholder="رقم الصك" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
       <DatePicker
@@ -56,7 +56,7 @@ function Step_Four({
           
           },0)
         }}
-        // value={elsaq_date}
+        value={elsaq_date}
         placeholder="تاريخ الصك"
         calendar={arabic}
         locale={arabic_en}
@@ -67,14 +67,14 @@ function Step_Four({
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' onChange={e=>{
+        <Form.Control type="number" className='text-center' value={floor_num} onChange={e=>{
           updateFields({floor_num: parseInt(e.target.value)})
         }} placeholder="الدور" />
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center'onChange={e=>{
+        <Form.Control type="number" className='text-center' value={apartment_num} onChange={e=>{
           updateFields({apartment_num: parseInt(e.target.value)})
         }}  placeholder="رقم الشقة" />
       </Form.Group>
@@ -83,13 +83,13 @@ function Step_Four({
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center'onChange={e=>{
+        <Form.Control type="number" className='text-center' value={building_floors} onChange={e=>{
           updateFields({building_floors: parseInt(e.target.value)})
         }}  placeholder="العمارة كم دور؟" />
       </Form.Group>
         </Col>
         <Col>
-        <Form.Select aria-label="Default select example" onChange={e=>
+        <Form.Select aria-label="Default select example" value={is_elevator} onChange={e=>
         {updateFields({is_elevator: e.target.value})
     }}>
       <option className='text-center'>هل يوجد مصعد؟</option>
