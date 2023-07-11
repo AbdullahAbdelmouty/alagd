@@ -22,12 +22,13 @@ function Resid_Owner_Form() {
     tanent_br: string
     contract_price: number
     contract_date: string
+    payment_way: string
     elsaq_type: string
     elsaq_price: number
     elsaq_date: string
     floor_num: number
     apartment_num: number
-    building_floors: number;
+    building_floors: number
     is_elevator: string
     city: string
     boycott: string,
@@ -46,6 +47,7 @@ function Resid_Owner_Form() {
     tanent_br: "",
     contract_price: 0,
     contract_date: "",
+    payment_way:"",
     elsaq_type: "",
     elsaq_price: 0,
     elsaq_date: "",
@@ -70,9 +72,9 @@ function Resid_Owner_Form() {
     const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,isSecondStep,goTo} = useMultistepsForm([
     <Step_One key="0" {...formData} updateFields={updateFields} />,
     <Step_Two key='1' {...formData} updateFields={updateFields}/>,
-    <Step_Three key="2"/>,
-    <Step_Four key="3"/>,
-    <Step_Five key="4"/>,
+    <Step_Three key="2" {...formData} updateFields={updateFields}/>,
+    <Step_Four key="3" {...formData} updateFields={updateFields}/>,
+    <Step_Five key="4" {...formData} updateFields={updateFields}/>,
   ]);
     const postData = async () => {
       const url = 'https://stage.al3gd.com/order/check-nid'; // Replace with your API endpoint URL
