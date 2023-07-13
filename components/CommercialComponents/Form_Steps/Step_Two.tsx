@@ -1,8 +1,26 @@
 import {Form} from 'react-bootstrap';
 import { ChangeEvent , useState } from 'react';
 import moment from 'moment-hijri';
-
-function Step_Two() {
+type tanentData = {
+  tanent_id: number
+  tanent_phone: number
+  tanent_br: string,
+  owenr_name:string,
+  tanent_check: boolean
+}
+type UserFormProps = tanentData & {
+  updateFields: (fields: Partial<tanentData>) => void
+}
+function Step_Two(
+  {
+    tanent_id,
+    tanent_phone,
+    tanent_br,
+    owenr_name,
+    tanent_check,
+    updateFields,
+  }: UserFormProps
+) {
     const [gregorianDate, setGregorianDate] = useState('');
     const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
       const selectedDate = event.target.value;

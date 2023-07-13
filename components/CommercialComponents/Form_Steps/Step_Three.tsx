@@ -1,8 +1,22 @@
 import {Form} from 'react-bootstrap';
 import moment from 'moment-hijri';
 import { ChangeEvent , useState } from 'react';
-
-function Step_Three() {
+type OwnerData = {
+  contract_price: number
+  contract_date: string
+  payment_way: string
+}
+type UserFormProps = OwnerData & {
+  updateFields: (fields: Partial<OwnerData>) => void
+}
+function Step_Three(
+  {
+    contract_price,
+    contract_date,
+    payment_way,
+    updateFields
+  }: UserFormProps
+) {
     const [gregorianDate, setGregorianDate] = useState('');
     const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
       const selectedDate = event.target.value;

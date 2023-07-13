@@ -1,8 +1,26 @@
 import {Form} from 'react-bootstrap';
 import { ChangeEvent , useState } from 'react';
 import moment from 'moment-hijri';
-
-function Step_One() {
+type OwnerData = {
+  owner_id: number
+  owner_phone: number
+  owner_br: string,
+  owenr_name:string,
+  owner_check: boolean
+}
+type UserFormProps = OwnerData & {
+  updateFields: (fields: Partial<OwnerData>) => void
+}
+function Step_One(
+  {
+    owner_id,
+    owner_phone,
+    owner_br,
+    owenr_name,
+    owner_check,
+    updateFields,
+  }: UserFormProps
+) {
   const [gregorianDate, setGregorianDate] = useState('');
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedDate = event.target.value;

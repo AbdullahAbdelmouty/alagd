@@ -3,16 +3,12 @@ import { FormEvent, useState } from "react";
 import { Button, Form ,InputGroup } from "react-bootstrap";
 import {DateObject}  from "react-multi-date-picker";
 import arabic from "react-date-object/calendars/arabic"
-import arabic_en from "react-date-object/locales/arabic_en";
-import Done from '../../public/next.svg'
+import arabic_en from "react-date-object/locales/arabic_en"
 import Step_One from "./Form_Steps/Step_One";
 import Step_Two from "./Form_Steps/Step_Two";
 import Step_Three from "./Form_Steps/Step_Three";
 import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
-import Step_Six from "./Form_Steps/Step_Six";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 function Resid_Owner_Form() {
   type FormData = {
     owner_id: number
@@ -36,9 +32,7 @@ function Resid_Owner_Form() {
     city: string
     boycott: string,
     owner_check:boolean,
-    tanent_check: boolean,
-    owner: boolean,
-    tanent: boolean
+    tanent_check: boolean
   }
   
   const INITIAL_DATA: FormData = {
@@ -63,10 +57,7 @@ function Resid_Owner_Form() {
     city: "",
     boycott: "",
     owner_check: false,
-    tanent_check: false,
-    owner: true,
-    tanent: false
-    
+    tanent_check: false
   }
   const [formData, setformData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {
@@ -77,13 +68,12 @@ function Resid_Owner_Form() {
 
   console.log(formData);
   
-    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,isSecondStep,isBeforLastWithOneStep,goTo} = useMultistepsForm([
+    const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,isSecondStep,goTo} = useMultistepsForm([
     <Step_One key="0" {...formData} updateFields={updateFields} />,
     <Step_Two key='1' {...formData} updateFields={updateFields}/>,
     <Step_Three key="2" {...formData} updateFields={updateFields}/>,
     <Step_Four key="3" {...formData} updateFields={updateFields}/>,
     <Step_Five key="4" {...formData} updateFields={updateFields}/>,
-    <Step_Six key="5"  {...formData} updateFields={updateFields}/>
   ]);
     const postData = async () => {
       const url = 'https://stage.al3gd.com/order/check-nid'; // Replace with your API endpoint URL
@@ -167,29 +157,16 @@ function Resid_Owner_Form() {
             return next();
           }
         }
-        if (!isBeforLastWithOneStep) return next()
-        Swal.fire({
-          title: 'بإرسالك للطلب ، انت متأكد من البيانات المرسلة وتفوض أميرال العقارية بإصدار عقد إيجار إلكتروني بناء على المعلومات التي قدمتها',
-          icon: 'question',
-          iconHtml: '؟',
-          confirmButtonText: 'نعم',
-          cancelButtonText: 'لا',
-          showCancelButton: true,
-          showCloseButton: true
-        }).then((result) => {
-          if (result.isConfirmed) {
-            goTo(5)
-            // submitDate();
-          }
-        })
+        if (!isLastStep) return next()
+        alert("dddddddd");
       }
       
   return (
     <Form onSubmit={onSubmit}>
         <p>`{steps.length}`/`{currentStepIndex+1}`</p>
         {step}
-        {!isLastStep&&<Button variant="primary" className='btnGreen' type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
-        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
+        {<Button variant="primary" className='btnGreen' type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        {!isFirstStep&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
     </Form>
   )
 }

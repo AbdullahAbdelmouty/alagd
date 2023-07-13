@@ -1,7 +1,20 @@
 import {Form, Row,Col} from 'react-bootstrap';
 import moment from 'moment-hijri';
 import { ChangeEvent , useState } from 'react';
-function Step_Five() {
+type Place ={
+  city: string
+  boycott: string
+}
+type UserFormProps = Place & {
+  updateFields: (fields: Partial<Place>) => void
+}
+function Step_Five(
+  {
+    city,
+    boycott,
+    updateFields
+  }:UserFormProps
+) {
     const [gregorianDate, setGregorianDate] = useState('');
     const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
       const selectedDate = event.target.value;
