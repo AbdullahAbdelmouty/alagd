@@ -1,11 +1,15 @@
 import {Form} from 'react-bootstrap';
-import { ChangeEvent , useState } from 'react';
-import moment from 'moment-hijri';
+import DatePicker,{DateObject}  from "react-multi-date-picker"
+import arabic from "react-date-object/calendars/arabic"
+import arabic_en from "react-date-object/locales/arabic_en"
+import { useState } from 'react';
 type tanentData = {
   tanent_id: number
   tanent_phone: number
   tanent_br: string,
   owenr_name:string,
+  tanent_city: string
+  tanent_boycott:string,
   tanent_check: boolean
 }
 type UserFormProps = tanentData & {
@@ -17,41 +21,78 @@ function Step_Two(
     tanent_phone,
     tanent_br,
     owenr_name,
+    tanent_city,
+    tanent_boycott,
     tanent_check,
     updateFields,
   }: UserFormProps
 ) {
-    const [gregorianDate, setGregorianDate] = useState('');
-    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const selectedDate = event.target.value;
-      const hijriDate = moment(selectedDate, 'YYYY-MM-DD').format('iYYYY/iM/iD');
-      setGregorianDate(selectedDate);
-      console.log(hijriDate);
-    };
+  const addIdValue = (id:number)=>{
+    if(tanent_check){
+      return id;
+    }
+  }
+  const addBrValue = (br:string)=>{
+    if(tanent_check){
+      return br;
+    }
+  }
+
+  const addPhoneValue = (phone:number)=>{
+    if(tanent_check){
+      return phone;
+    }
+  }
   return (
     <>
     <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="رقم هوية المستأجر" />
+        <Form.Control type="text" className='text-center'  placeholder="هوية المستأجر" required value={addIdValue(tanent_id)}  onChange={e => {
+          updateFields({ tanent_id: parseInt(e.target.value,10) })
+          }}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="اسم المستأجر الثالثي" />
-      </Form.Group>
+         {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
+      </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" />
+        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" required value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-        <Form.Control type="date" className='text-center' value={gregorianDate} onChange={handleDateChange}  placeholder="تاريخ ميلاد المستأجر" />
-        {gregorianDate && (
-        <p>Hijri Date: {moment(gregorianDate).format('iYYYY/iM/iD')}</p>
-      )}
+        <DatePicker
+        onChange={()=>{
+          setTimeout(()=>{
+          const input = document.querySelector('.rmdp-input') as HTMLInputElement | null;
+          const value = input?.value;
+          console.log(value,typeof value);
+          const valueConvert = value?.replaceAll('/','-');
+          if(typeof value === "string"){
+            updateFields({tanent_br: `${valueConvert}`});
+          }
+          
+          },0)
+        }}
+        value={addBrValue(tanent_br)}
+        placeholder="تاريخ ميلاد المستأجر"
+        calendar={arabic}
+        locale={arabic_en}
+        calendarPosition="bottom-right"
+        
+      />
       </Form.Group>
       <h3 className='text-center fw-bold'>العنوان الوطني للمستأجر</h3>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="المدينة" />
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control type="text" className='text-center' value={tanent_city} onChange={e=>{
+          console.log(e.target.value);
+          
+          updateFields({tanent_city: e.target.value})
+        }} placeholder="المدينة" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="الحي" />
+        <Form.Control type="text" className='text-center' 
+        value={tanent_boycott}
+         onChange={e=>{
+          updateFields({tanent_boycott: e.target.value})
+        }} placeholder="الحي" />
       </Form.Group>
     </>
   )

@@ -1,9 +1,12 @@
 import {Form} from 'react-bootstrap';
-import moment from 'moment-hijri';
 import { ChangeEvent , useState } from 'react';
+import DatePicker,{DateObject}  from "react-multi-date-picker"
+import arabic from "react-date-object/calendars/arabic"
+import arabic_en from "react-date-object/locales/arabic_en";
 type OwnerData = {
   contract_price: number
   contract_date: string
+  place_area: number
   payment_way: string
 }
 type UserFormProps = OwnerData & {
@@ -13,39 +16,55 @@ function Step_Three(
   {
     contract_price,
     contract_date,
+    place_area,
     payment_way,
     updateFields
   }: UserFormProps
 ) {
-    const [gregorianDate, setGregorianDate] = useState('');
-    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const selectedDate = event.target.value;
-      const hijriDate = moment(selectedDate, 'YYYY-MM-DD').format('iYYYY/iM/iD');
-      setGregorianDate(selectedDate);
-      console.log(hijriDate);
-    };
+
   return (
     <>
     <h3 className='text-center fw-bold'>معلومات العقد</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' placeholder="مبلغ الإيجار السنوي" />
+      <Form.Control type="number" className='text-center' value={contract_price} onChange={e=>{
+        updateFields({contract_price: parseInt(e.target.value)})
+      }} placeholder="مبلغ الإيجار السنوي" />
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-      <Form.Control type="date" className='text-center' value={gregorianDate} onChange={handleDateChange}  placeholder="تاريخ بداية العقد" />
-      {gregorianDate && (
-      <p>Hijri Date: {moment(gregorianDate).format('iYYYY/iM/iD')}</p>
-    )}
+    <DatePicker
+        onChange={()=>{
+          setTimeout(()=>{
+          const input = document.querySelector('.rmdp-input') as HTMLInputElement | null;
+          const value = input?.value;
+          console.log(value,typeof value);
+          const valueConvert = value?.replaceAll('/','-');
+          if(typeof value === "string"){
+            updateFields({contract_date: `${valueConvert}`});
+          }
+          
+          },0)
+        }}
+        value={contract_date}
+        placeholder="تاريخ بداية العقد"
+        calendar={arabic}
+        locale={arabic_en}
+        calendarPosition="bottom-right"
+        
+      />
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' placeholder="مساحة المحل بالمتر المربع" />
+      <Form.Control type="number" className='text-center'value={place_area} onChange={e=>{
+        updateFields({place_area: parseInt(e.target.value)})
+      }} placeholder="مساحة المحل بالمتر المربع" />
     </Form.Group>
     <div className='d-flex justify-content-center align-items-center'>
     <Form.Label className='m-0'>طريقة الدفع</Form.Label>
-    <Form.Select aria-label="Default select example">
-    <option value="1">شهري</option>
-    <option value="2">كل 3 شهور</option>
-    <option value="3">كل 6 شهور</option>
-    <option value="4">سنوي</option>
+    <Form.Select aria-label="Default select example" value={payment_way} onChange={e=>{updateFields({payment_way: e.target.value})
+    }}>
+    <option value="شهري" >شهري</option>
+    <option value="كل 3 شهور">كل 3 شهور</option>
+    <option value="كل 6 شهور" selected>كل 6 شهور</option>
+    <option value="سنوي">سنوي</option>
   </Form.Select>
     </div>
 
