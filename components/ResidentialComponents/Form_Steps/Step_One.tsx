@@ -44,10 +44,11 @@ function Step_One({
     <>
     <h3 className='text-center fw-bold mb-4'>معلومات المالك</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' id="owner_id" placeholder="هوية المالك"  required maxLength={10} minLength={10} value={addIdValue(owner_id)}  onChange={e => {
+        <Form.Control type="tel" className='text-center'  placeholder="هوية المالك"  required maxLength={10} minLength={10} value={addIdValue(owner_id)}  onChange={e => {
           updateFields({ owner_id: parseInt(e.target.value,10) })
           }}/>
-          <Form.Control.Feedback type="invalid">
+          {!owner_check&&<span className='owner_feedback text-danger'></span>}   
+       <Form.Control.Feedback  type="invalid">
           يجب أن يكون رقم الهوية مكون من 10 خانات
           </Form.Control.Feedback>
       </Form.Group>

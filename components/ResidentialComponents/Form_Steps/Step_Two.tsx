@@ -47,6 +47,7 @@ function Step_One({
         <Form.Control type="number" className='text-center'  placeholder="هوية المستأجر" required maxLength={10} minLength={10} value={addIdValue(tanent_id)}  onChange={e => {
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
+          {!tanent_check&&<span className='owner_feedback text-danger'></span>}   
           <Form.Control.Feedback type="invalid">
           يجب أن يكون رقم الهوية مكون من 10 خانات
           </Form.Control.Feedback>

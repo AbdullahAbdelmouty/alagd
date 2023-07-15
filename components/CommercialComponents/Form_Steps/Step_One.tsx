@@ -52,6 +52,7 @@ function Step_One(
         <Form.Control type="number" className='text-center'  placeholder="هوية المالك"  required minLength={10} maxLength={10} value={addIdValue(owner_id)}  onChange={e => {
           updateFields({ owner_id: parseInt(e.target.value,10) })
           }}/>
+          {!owner_check&&<span className='owner_feedback text-danger'></span>}   
           <Form.Control.Feedback type="invalid">
           يجب أن يكون رقم الهوية مكون من 10 خانات
           </Form.Control.Feedback>

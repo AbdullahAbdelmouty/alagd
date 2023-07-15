@@ -151,7 +151,9 @@ function Resid_Owner_Form() {
     }
     //////////////////////////////////////////
     const [validated, setValidated] = useState(false);
-
+    const onwner_id_check = document.querySelector(".owner_feedback") as HTMLInputElement;
+    console.log(onwner_id_check);
+    
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
@@ -166,18 +168,28 @@ function Resid_Owner_Form() {
         if(isFirstStep){
           postData();
           console.log(formData);
-          if(!formData.owner_check){
+          if(!formData.owner_check&&form.checkValidity() === false){
             return goTo(currentStepIndex)
-          }else{
+          }
+          else if (!formData.owner_check&&form.checkValidity() === true){
+            onwner_id_check.innerText = "رقم الهوية أو تاريخ الميلاد غير صحيح";
+            return goTo(currentStepIndex)
+          }
+          else{
             return next();
           }
         }
         if(isSecondStep){
           postData();
           console.log(formData);
-          if(!formData.tanent_check){
+          if(!formData.tanent_check&&form.checkValidity() === false){
             return goTo(currentStepIndex)
-          }else{
+          }
+          else if (!formData.tanent_check&&form.checkValidity() === true){
+            onwner_id_check.innerText = "رقم الهوية أو تاريخ الميلاد غير صحيح";
+            return goTo(currentStepIndex)
+          }
+          else{
             return next();
           }
         }
