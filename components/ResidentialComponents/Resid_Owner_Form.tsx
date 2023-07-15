@@ -151,16 +151,24 @@ function Resid_Owner_Form() {
     }
     //////////////////////////////////////////
     const owner_id_E = document.getElementById("owner_id") as HTMLInputElement;
-    function onSubmit(e: FormEvent) {
+    // const form = document.getElementById("form") as HTMLFormElement;
+    const [validated, setValidated] = useState(false);
+
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+    
+        setValidated(true);
+
+    
         e.preventDefault()
         if(isFirstStep){
           postData();
           console.log(formData);
           if(!formData.owner_check){
-            console.log(owner_id_E);
-            
-            owner_id_E.style.border = "1px solid blue";
-            owner_id_E.style.backgroundColor = "red";
             return goTo(currentStepIndex)
           }else{
             return next();
@@ -224,7 +232,7 @@ function Resid_Owner_Form() {
       </Col>
       </Row>
     </div>}
-    <Form onSubmit={onSubmit}  className="p-2">
+    <Form onSubmit={onSubmit} noValidate validated={validated}  className="p-2 form">
         {step}
         {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
         {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}

@@ -44,15 +44,21 @@ function Step_One({
     <>
     <h3 className='text-center fw-bold mb-4'>معلومات المالك</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' id="owner_id" placeholder="هوية المالك"   value={addIdValue(owner_id)}  onChange={e => {
+        <Form.Control type="text" className='text-center' id="owner_id" placeholder="هوية المالك"  required maxLength={10} minLength={10} value={addIdValue(owner_id)}  onChange={e => {
           updateFields({ owner_id: parseInt(e.target.value,10) })
           }}/>
+          <Form.Control.Feedback type="invalid">
+          رقم الهوية مطلوب
+          </Form.Control.Feedback>
       </Form.Group>
          {owner_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Control type="tel" className='text-center' placeholder="رقم جوال المالك في أبشر05xxxxx" required value={addPhoneValue(owner_phone)} onChange={e=> updateFields({owner_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control.Feedback type="invalid">
+        الاسم مطلوب
+          </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <DatePicker
