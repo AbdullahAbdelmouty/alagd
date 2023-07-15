@@ -1,6 +1,6 @@
 import { useMultistepsForm } from "@/useMultiForm";
 import { FormEvent, useState } from "react";
-import { Button, Form ,InputGroup } from "react-bootstrap";
+import { Button, Form ,InputGroup, Row ,Col} from "react-bootstrap";
 import {DateObject}  from "react-multi-date-picker";
 import arabic from "react-date-object/calendars/arabic"
 import arabic_en from "react-date-object/locales/arabic_en"
@@ -11,6 +11,7 @@ import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
 import Step_Six from "../ResidentialComponents/Form_Steps/Step_Six";
 import Swal from 'sweetalert2'
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 function Resid_Owner_Form() {
   type FormData = {
@@ -37,6 +38,7 @@ function Resid_Owner_Form() {
     apartment_num: number
     building_floors: number
     is_elevator: string
+    room_num: number
     city: string
     boycott: string,
     owner_check:boolean,
@@ -69,6 +71,7 @@ function Resid_Owner_Form() {
     apartment_num: NaN,
     building_floors: NaN,
     is_elevator: "",
+    room_num : NaN,
     city: "",
     boycott: "",
     owner_check: false,
@@ -194,13 +197,44 @@ function Resid_Owner_Form() {
       })
     }
     
+    const goToFourthStep = () => {
+      if(formData.contract_date&&formData.contract_price&&formData.payment_way){
+        goTo(3)
+      }
+        }
+        const goToFifithStep = () => {
+          if(formData.elsaq_date&&formData.elsaq_num&&formData.elsaq_type&&formData.floor_num&&formData.apartment_num&&formData.building_floors&&formData.room_num){
+            goTo(4)
+          }
+            }
   return (
-    <Form onSubmit={onSubmit}>
-        <p>`{steps.length}`/`{currentStepIndex+1}`</p>
+    <>
+    {!isLastStep&&<div className="setpsContainer">
+    <ProgressBar now={25*(currentStepIndex)} />
+    <Row className="steps">
+      <Col className="d-flex justify-content-center">
+      <Button variant="primary" className='btnGreenSteps rounded-circle'  onClick={()=>{goTo(0)}}>{1}</Button>
+      </Col>
+      <Col>
+      <Button variant="primary" className={`${currentStepIndex>=1? "btnGreenSteps":"btnGray"} rounded-circle`} onClick={()=>{formData.owner_check&&goTo(1)}}>{2}</Button>
+      </Col>
+      <Col className="d-flex justify-content-center">
+      <Button variant="primary" className={`${currentStepIndex>=2? "btnGreenSteps":"btnGray"} rounded-circle`} onClick={()=>{(formData.owner_check&&formData.tanent_check)&&goTo(2)}}>{3}</Button>
+      </Col>
+      <Col className="d-flex justify-content-center">
+      <Button variant="primary" className={`${currentStepIndex>=3? "btnGreenSteps":"btnGray"} rounded-circle`}  onClick={()=>{goToFourthStep()}}>{4}</Button>
+      </Col>
+      <Col className="d-flex justify-content-center">
+      <Button variant="primary" className={`${currentStepIndex>=4? "btnGreenSteps":"btnGray"} rounded-circle`}   onClick={()=>{goToFifithStep()}}>{5}</Button>
+      </Col>
+      </Row>
+    </div>}
+    <Form onSubmit={onSubmit} className="p-2">
         {step}
-        {!isLastStep&&<Button variant="primary" className='btnGreen' type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
         {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
     </Form>
+    </>
   )
 }
 

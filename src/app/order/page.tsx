@@ -16,9 +16,7 @@ function Order() {
   const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBack} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm key='2'/>,<Commerical_Form key={3}/>]);
   return (
 <>
-    
     <Container fluid className='d-flex justify-content-center align-items-center orderPage' >
-
       {/* card container that container all the steps of form */}
       <Card style={{ width: '26rem' }} className=' border border-0 rounded-4 p-3'>
       <Card.Body>

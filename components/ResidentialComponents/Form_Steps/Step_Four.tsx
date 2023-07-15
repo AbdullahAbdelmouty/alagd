@@ -12,6 +12,7 @@ type Elsaq={
   apartment_num: number
   building_floors: number
   is_elevator: string
+  room_num : number
 }
 type UserFormProps = Elsaq & {
   updateFields: (fields: Partial<Elsaq>) => void
@@ -24,12 +25,15 @@ function Step_Four({
   apartment_num,
   building_floors,
   is_elevator,
+  room_num ,
   updateFields
 }: UserFormProps) {
   return (
     <>
      <h3 className='text-center fw-bold'>معلومات الصك</h3>
-     <Form.Select aria-label="Default select example">
+     <Form.Select aria-label="Default select example" value={elsaq_type}  onChange={e=>
+        {updateFields({elsaq_type: e.target.value})
+    }}>
       <option className='text-center'>نوع الصحك</option>
       <option value="1">صك ورقي</option>
       <option value="2">صك الكتروني</option>
@@ -98,6 +102,13 @@ function Step_Four({
       </Form.Select>
         </Col>
       </Row>
+      <Col>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control type="number" className='text-center' value={room_num} onChange={e=>{
+          updateFields({room_num: parseInt(e.target.value)})
+        }}  placeholder="عدد غرف الشقة" />
+      </Form.Group>
+        </Col>
     </>
   )
 }

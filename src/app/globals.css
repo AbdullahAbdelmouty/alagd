@@ -111,7 +111,27 @@ a {
   padding: 0;
   margin: 0;
 }
+.setpsContainer{
+  position: relative;
+  top: -110px;
+}
+.steps{
+  position: relative;
+  z-index: 44;
+}
+.progress{
+  width: 339px;
+  margin-right: 7px;
+  position: relative;
+  top: 27px;
+  height: 10px !important;
+  background-color: #4f6986 !important;
 
+}
+.progress-bar{
+  background-color:  #22b573 !important;
+  height: 10px !important;
+}
 .orderPage{
   height: 100vh;
   background-color: #042141 ;
@@ -120,9 +140,30 @@ a {
 .btnGreen{
   background-color: #22b573 !important;
   border: 0 !important;
+  margin: 5px;
+}
+
+.btnGreenSteps{
+  background-color: #22b573 !important;
+  border: 0 !important;
+  width: 40px;
+  height: 40px;
+}
+.btnGray{
+  background-color: #4f6986 !important;
+  border: 0 !important;
+  width: 40px;
+  height: 40px;
 }
 
 .btnImage{
   background-color: transparent !important;
   border: 0 !important;
+}
+
+.rmdp-input {
+  text-align: center;
+  width: 336px;
+  border: 1px solid #dee2e6;
+  height: 40px;
 }
