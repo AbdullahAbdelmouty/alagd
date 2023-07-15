@@ -47,15 +47,21 @@ function Step_Two(
     <>
     <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="هوية المستأجر" required value={addIdValue(tanent_id)}  onChange={e => {
+        <Form.Control type="text" className='text-center' placeholder="هوية المستأجر" required maxLength={10} minLength={10} value={addIdValue(tanent_id)}  onChange={e => {
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
+          <Form.Control.Feedback type="invalid">
+          يجب أن يكون رقم الهوية مكون من 10 خانات
+          </Form.Control.Feedback>
       </Form.Group>
          {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" required value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" required maxLength={10} minLength={10} value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control.Feedback type="invalid">
+        يجب أن يكون رقم الجوال مكون من 10 خانات
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <DatePicker
@@ -87,6 +93,9 @@ function Step_Two(
           
           updateFields({tanent_city: e.target.value})
         }} placeholder="المدينة" />
+        <Form.Control.Feedback type="invalid">
+        المدينة مطلوبة         
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center' required
@@ -94,6 +103,9 @@ function Step_Two(
          onChange={e=>{
           updateFields({tanent_boycott: e.target.value})
         }} placeholder="الحي" />
+        <Form.Control.Feedback type="invalid">
+        الحي مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
     </>
   )

@@ -20,10 +20,11 @@ function Step_Five({
          <h3 className='text-center fw-bold mb-4'>العنوان الوطني للعقار المأجر</h3>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center' required value={city} onChange={e=>{
-          console.log(e.target.value);
-          
           updateFields({city: e.target.value})
         }} placeholder="المدينة" />
+        <Form.Control.Feedback type="invalid">
+          المدينة مطلوبة
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center'  required
@@ -31,6 +32,9 @@ function Step_Five({
          onChange={e=>{
           updateFields({boycott: e.target.value})
         }} placeholder="الحي" />
+          <Form.Control.Feedback type="invalid">
+            الحي مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
     </>
   )

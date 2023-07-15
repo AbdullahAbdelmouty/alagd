@@ -42,9 +42,12 @@ function Step_Four({
       <option value="5">لايوجد صك</option>
     </Form.Select>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' required value={elsaq_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required min={0} value={elsaq_num} onChange={e=>{
           updateFields({elsaq_num: parseInt(e.target.value)})
         }} placeholder="رقم الصك" />
+        <Form.Control.Feedback type="invalid">
+        رقم الصك مطلوب        
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
       <DatePicker
@@ -75,13 +78,20 @@ function Step_Four({
         <Form.Control type="number" className='text-center' required value={floor_num} onChange={e=>{
           updateFields({floor_num: parseInt(e.target.value)})
         }} placeholder="الدور" />
+        <Form.Control.Feedback type="invalid">
+        رقم الدور مطلوب
+        </Form.Control.Feedback>
+        
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' required value={apartment_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required min={1} value={apartment_num} onChange={e=>{
           updateFields({apartment_num: parseInt(e.target.value)})
         }}  placeholder="رقم الشقة" />
+        <Form.Control.Feedback type="invalid">
+        رقم الشقة مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
       </Row>
@@ -108,6 +118,9 @@ function Step_Four({
         <Form.Control type="number" className='text-center' required value={room_num} onChange={e=>{
           updateFields({room_num: parseInt(e.target.value)})
         }}  placeholder="عدد غرف الشقة" />
+        <Form.Control.Feedback type="invalid">
+        عدد الغرف مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
     </>

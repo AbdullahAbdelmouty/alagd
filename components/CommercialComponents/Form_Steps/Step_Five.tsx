@@ -31,11 +31,17 @@ function Step_Five(
         <Form.Control type="text" className='text-center' value={city} onChange={e=>{
           updateFields({city: e.target.value})
         }} required placeholder="المدينة" />
+        <Form.Control.Feedback type="invalid">
+          المدينة مطلوبة
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center' required value={boycott} onChange={e=>{
           updateFields({boycott: e.target.value})
         }} placeholder="الحي" />
+        <Form.Control.Feedback type="invalid">
+            الحي مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
       <Row>
         <Col>
@@ -43,13 +49,19 @@ function Step_Five(
         <Form.Control type="text" className='text-center'  required  value={street}  onChange={e=>{
           updateFields({street: e.target.value})
         }} placeholder="الشارع" />
+        <Form.Control.Feedback type="invalid">
+            الشارع مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={bulding_num}  onChange={e=>{
+        <Form.Control type="number" className='text-center' min={1} value={bulding_num}  onChange={e=>{
           updateFields({bulding_num: parseInt(e.target.value)})
         }} required placeholder="رقم المبني" />
+        <Form.Control.Feedback type="invalid">
+            رقم المبني مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
       </Row>
@@ -59,6 +71,9 @@ function Step_Five(
         <Form.Control type="number" className='text-center' value={postal_code}  onChange={e=>{
           updateFields({postal_code: parseInt(e.target.value)})
         }}  required placeholder="الرمز البريدي" />
+        <Form.Control.Feedback type="invalid">
+            الرمز البريدي مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
         <Col>
@@ -66,6 +81,9 @@ function Step_Five(
         <Form.Control type="number" className='text-center' value={addition_num}  onChange={e=>{
           updateFields({addition_num: parseInt(e.target.value)})
         }} required placeholder="الرقم الاضافي" />
+        <Form.Control.Feedback type="invalid">
+            رقم الاضافي مطلوب
+        </Form.Control.Feedback>
       </Form.Group>
         </Col>
       </Row>

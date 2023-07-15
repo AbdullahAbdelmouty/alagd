@@ -148,42 +148,53 @@ function Resid_Tanent_Form() {
       }
     }
     //////////////////////////////////////////
-    function onSubmit(e: FormEvent) {
-      e.preventDefault()
-      if(isFirstStep){
-        postData();
-        console.log(formData);
-        if(!formData.owner_check){
-          return goTo(currentStepIndex)
-        }else{
-          return next();
+    const [validated, setValidated] = useState(false);
+
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+          e.preventDefault();
+          e.stopPropagation();
         }
+    
+        setValidated(true);
+
+    
+        e.preventDefault()
+        if(isFirstStep){
+          postData();
+          console.log(formData);
+          if(!formData.owner_check){
+            return goTo(currentStepIndex)
+          }else{
+            return next();
+          }
+        }
+        if(isSecondStep){
+          postData();
+          console.log(formData);
+          if(!formData.tanent_check){
+            return goTo(currentStepIndex)
+          }else{
+            return next();
+          }
+        }
+        if (!isBeforLastWithOneStep) return next()
+        Swal.fire({
+          title: 'بإرسالك للطلب ، انت متأكد من البيانات المرسلة وتفوض أميرال العقارية بإصدار عقد إيجار إلكتروني بناء على المعلومات التي قدمتها',
+          icon: 'question',
+          iconHtml: '؟',
+          confirmButtonText: 'نعم',
+          cancelButtonText: 'لا',
+          showCancelButton: true,
+          showCloseButton: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            goTo(5)
+            // submitDate();
+          }
+        })
       }
-      if(isSecondStep){
-        postData();
-        console.log(formData);
-        if(!formData.tanent_check){
-          return goTo(currentStepIndex)
-        }else{
-          return next();
-        }
-      }
-      if (!isBeforLastWithOneStep) return next()
-      Swal.fire({
-        title: 'بإرسالك للطلب ، انت متأكد من البيانات المرسلة وتفوض أميرال العقارية بإصدار عقد إيجار إلكتروني بناء على المعلومات التي قدمتها',
-        icon: 'question',
-        iconHtml: '؟',
-        confirmButtonText: 'نعم',
-        cancelButtonText: 'لا',
-        showCancelButton: true,
-        showCloseButton: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          goTo(5)
-          // submitDate();
-        }
-      })
-    }
 
     const goToFourthStep = () => {
       if(formData.contract_date&&formData.contract_price&&formData.payment_way){
@@ -218,7 +229,7 @@ function Resid_Tanent_Form() {
       </Col>
       </Row>
     </div>}
-    <Form onSubmit={onSubmit} className="p-2">
+    <Form onSubmit={onSubmit}  noValidate validated={validated}  className="p-2">
         {step}
         {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
         {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}

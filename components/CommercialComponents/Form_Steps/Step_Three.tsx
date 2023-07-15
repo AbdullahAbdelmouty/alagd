@@ -26,9 +26,12 @@ function Step_Three(
     <>
     <h3 className='text-center fw-bold mb-4'>معلومات العقد</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' required value={contract_price} onChange={e=>{
+      <Form.Control type="number" className='text-center' required min={1} value={contract_price} onChange={e=>{
         updateFields({contract_price: parseInt(e.target.value)})
       }} placeholder="مبلغ الإيجار السنوي" />
+        <Form.Control.Feedback type="invalid">
+        مبلغ الإيجار السنوي       
+        </Form.Control.Feedback>
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
     <DatePicker
@@ -54,9 +57,12 @@ function Step_Three(
       />
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' required value={place_area} onChange={e=>{
+      <Form.Control type="number" className='text-center' required min={1} value={place_area} onChange={e=>{
         updateFields({place_area: parseInt(e.target.value)})
       }} placeholder="مساحة المحل بالمتر المربع" />
+      <Form.Control.Feedback type="invalid">
+      مساحة المحل بالمتر المربع     
+       </Form.Control.Feedback>
     </Form.Group>
     <div className='d-flex justify-content-center align-items-center'>
     <Form.Label className='m-0'>طريقة الدفع</Form.Label>

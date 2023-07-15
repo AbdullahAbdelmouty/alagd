@@ -48,7 +48,7 @@ function Step_One({
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
           <Form.Control.Feedback type="invalid">
-          رقم الهوية مطلوب
+          يجب أن يكون رقم الهوية مكون من 10 خانات
           </Form.Control.Feedback>
       </Form.Group>
          {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -57,7 +57,7 @@ function Step_One({
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Control type="tel" className='text-center' required maxLength={10} minLength={10} placeholder="رقم جوال المستأجر في أبشر05xxxxx"  value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
         <Form.Control.Feedback type="invalid">
-        رقم جوال أبشر مطلوب          
+        يجب أن يكون رقم الجوال مكون من 10 خانات
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">

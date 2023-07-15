@@ -175,7 +175,9 @@ input:focus {
   padding: 10px;
   transition: padding 0.3s ease-out;
 }
-
+.date-is-invalid{
+  border: 1px solid red !important;
+}
 
 
 .btnGreen:hover {

@@ -20,9 +20,12 @@ function Step_Four(
   return (
     <>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' required value={elsaq_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required min={1} value={elsaq_num} onChange={e=>{
           updateFields({elsaq_num: parseInt(e.target.value)})
         }} placeholder="رقم الصك" />
+        <Form.Control.Feedback type="invalid">
+        رقم الصك مطلوب        
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
       <DatePicker

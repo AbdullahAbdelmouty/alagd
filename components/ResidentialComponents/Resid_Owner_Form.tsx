@@ -150,8 +150,6 @@ function Resid_Owner_Form() {
       }
     }
     //////////////////////////////////////////
-    const owner_id_E = document.getElementById("owner_id") as HTMLInputElement;
-    // const form = document.getElementById("form") as HTMLFormElement;
     const [validated, setValidated] = useState(false);
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {

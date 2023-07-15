@@ -48,7 +48,7 @@ function Step_One({
           updateFields({ owner_id: parseInt(e.target.value,10) })
           }}/>
           <Form.Control.Feedback type="invalid">
-          رقم الهوية مطلوب
+          يجب أن يكون رقم الهوية مكون من 10 خانات
           </Form.Control.Feedback>
       </Form.Group>
          {owner_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -57,7 +57,7 @@ function Step_One({
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Control type="tel" className='text-center' placeholder="رقم جوال المالك في أبشر05xxxxx" required maxLength={10} minLength={10} value={addPhoneValue(owner_phone)} onChange={e=> updateFields({owner_phone: parseInt(e.target.value,10)})}/>
         <Form.Control.Feedback type="invalid">
-        رقم جوال أبشر مطلوب          
+        يجب أن يكون رقم الجوال مكون من 10 خانات
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">

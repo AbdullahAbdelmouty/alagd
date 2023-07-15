@@ -25,9 +25,12 @@ function Step_Three(
     <>
     <h3 className='text-center fw-bold mb-4'>معلومات العقد</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' required value={contract_price} onChange={e=>{
+      <Form.Control type="number" className='text-center' required min={1}  value={contract_price} onChange={e=>{
         updateFields({contract_price: parseInt(e.target.value)})
       }} placeholder="مبلغ الإيجار السنوي" />
+        <Form.Control.Feedback type="invalid">
+        مبلغ الإيجار السنوي       
+        </Form.Control.Feedback>
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
     <DatePicker
