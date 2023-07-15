@@ -168,6 +168,15 @@ a {
   height: 40px !important;
 }
 
+@media screen and (max-width: 600px) {
+  .rmdp-input {
+    text-align: center;
+    width: 303px;
+    height: 40px!important;}
+}
+  
+
+
 input:focus {
   outline: none;
   box-shadow: none !important;
