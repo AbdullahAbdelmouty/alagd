@@ -170,12 +170,12 @@ a {
 
 @media screen and (max-width: 600px) {
   .rmdp-input {
-    text-align: center;
     width: 303px;
-    height: 40px!important;}
+  }
+  .progress {
+    width: 306px;
 }
-  
-
+}
 
 input:focus {
   outline: none;
