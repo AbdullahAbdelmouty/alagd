@@ -44,15 +44,18 @@ function Step_One({
     <>
     <h3 className='text-center fw-bold mb-4'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center'  placeholder="هوية المستأجر" required value={addIdValue(tanent_id)}  onChange={e => {
+        <Form.Control type="text" className='text-center'  placeholder="هوية المستأجر" required maxLength={10} minLength={10} value={addIdValue(tanent_id)}  onChange={e => {
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
+          <Form.Control.Feedback type="invalid">
+          رقم الهوية مطلوب
+          </Form.Control.Feedback>
       </Form.Group>
          {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center form-control' required value={owenr_name} disabled/>
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' required placeholder="رقم جوال المستأجر في أبشر05xxxxx"  value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control type="tel" className='text-center' required maxLength={10} minLength={10} placeholder="رقم جوال المستأجر في أبشر05xxxxx"  value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <DatePicker

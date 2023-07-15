@@ -55,7 +55,7 @@ function Step_One({
         <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المالك في أبشر05xxxxx" required value={addPhoneValue(owner_phone)} onChange={e=> updateFields({owner_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المالك في أبشر05xxxxx" required maxLength={10} minLength={10} value={addPhoneValue(owner_phone)} onChange={e=> updateFields({owner_phone: parseInt(e.target.value,10)})}/>
         <Form.Control.Feedback type="invalid">
         الاسم مطلوب
           </Form.Control.Feedback>
