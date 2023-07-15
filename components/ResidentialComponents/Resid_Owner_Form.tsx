@@ -150,12 +150,17 @@ function Resid_Owner_Form() {
       }
     }
     //////////////////////////////////////////
+    const owner_id_E = document.getElementById("owner_id") as HTMLInputElement;
     function onSubmit(e: FormEvent) {
         e.preventDefault()
         if(isFirstStep){
           postData();
           console.log(formData);
           if(!formData.owner_check){
+            console.log(owner_id_E);
+            
+            owner_id_E.style.border = "1px solid blue";
+            owner_id_E.style.backgroundColor = "red";
             return goTo(currentStepIndex)
           }else{
             return next();

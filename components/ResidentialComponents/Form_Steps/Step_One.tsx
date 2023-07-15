@@ -42,9 +42,9 @@ function Step_One({
   return (
 
     <>
-    <h3 className='text-center fw-bold'>معلومات المالك</h3>
+    <h3 className='text-center fw-bold mb-4'>معلومات المالك</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center'  placeholder="هوية المالك" required value={addIdValue(owner_id)}  onChange={e => {
+        <Form.Control type="text" className='text-center' id="owner_id" placeholder="هوية المالك"   value={addIdValue(owner_id)}  onChange={e => {
           updateFields({ owner_id: parseInt(e.target.value,10) })
           }}/>
       </Form.Group>
@@ -70,6 +70,7 @@ function Step_One({
         }}
         value={addBrValue(owner_br)}
         placeholder="تاريخ ميلاد المالك"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"

@@ -24,9 +24,9 @@ function Step_Three(
 
   return (
     <>
-    <h3 className='text-center fw-bold'>معلومات العقد</h3>
+    <h3 className='text-center fw-bold mb-4'>معلومات العقد</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' value={contract_price} onChange={e=>{
+      <Form.Control type="number" className='text-center' required value={contract_price} onChange={e=>{
         updateFields({contract_price: parseInt(e.target.value)})
       }} placeholder="مبلغ الإيجار السنوي" />
     </Form.Group>
@@ -46,6 +46,7 @@ function Step_Three(
         }}
         value={contract_date}
         placeholder="تاريخ بداية العقد"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"
@@ -53,13 +54,13 @@ function Step_Three(
       />
     </Form.Group>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center'value={place_area} onChange={e=>{
+      <Form.Control type="number" className='text-center' required value={place_area} onChange={e=>{
         updateFields({place_area: parseInt(e.target.value)})
       }} placeholder="مساحة المحل بالمتر المربع" />
     </Form.Group>
     <div className='d-flex justify-content-center align-items-center'>
     <Form.Label className='m-0'>طريقة الدفع</Form.Label>
-    <Form.Select aria-label="Default select example" value={payment_way} onChange={e=>{updateFields({payment_way: e.target.value})
+    <Form.Select aria-label="Default select example"  value={payment_way} onChange={e=>{updateFields({payment_way: e.target.value})
     }}>
     <option value="شهري" >شهري</option>
     <option value="كل 3 شهور">كل 3 شهور</option>

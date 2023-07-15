@@ -41,6 +41,10 @@ function Resid_Owner_Form() {
     room_num: number
     city: string
     boycott: string,
+    street: string,
+    bulding_num: number,
+    postal_code: number,
+    addition_num: number,
     owner_check:boolean,
     tanent_check: boolean,
     owner: boolean
@@ -74,6 +78,10 @@ function Resid_Owner_Form() {
     room_num : NaN,
     city: "",
     boycott: "",
+    street: "",
+    bulding_num: NaN,
+    postal_code: NaN,
+    addition_num: NaN,
     owner_check: false,
     tanent_check: false,
     owner: true,

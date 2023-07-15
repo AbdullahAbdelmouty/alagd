@@ -19,7 +19,7 @@ function Order() {
     <Container fluid className='d-flex justify-content-center align-items-center orderPage' >
       {/* card container that container all the steps of form */}
       <Card style={{ width: '26rem' }} className=' border border-0 rounded-4 p-3'>
-      <Card.Body>
+      <Card.Body className='p-2'>
         {/*varible contain the current component of the form*/}
         {step}
         {/*two buttons that represent the choice of commercial or Residential*/}

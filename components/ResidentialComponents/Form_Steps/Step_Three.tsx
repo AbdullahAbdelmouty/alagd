@@ -23,9 +23,9 @@ function Step_Three(
 
   return (
     <>
-    <h3 className='text-center fw-bold'>معلومات العقد</h3>
+    <h3 className='text-center fw-bold mb-4'>معلومات العقد</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-      <Form.Control type="number" className='text-center' value={contract_price} onChange={e=>{
+      <Form.Control type="number" className='text-center' required value={contract_price} onChange={e=>{
         updateFields({contract_price: parseInt(e.target.value)})
       }} placeholder="مبلغ الإيجار السنوي" />
     </Form.Group>
@@ -45,6 +45,7 @@ function Step_Three(
         }}
         value={contract_date}
         placeholder="تاريخ بداية العقد"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"

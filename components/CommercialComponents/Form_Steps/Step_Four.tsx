@@ -20,7 +20,7 @@ function Step_Four(
   return (
     <>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={elsaq_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={elsaq_num} onChange={e=>{
           updateFields({elsaq_num: parseInt(e.target.value)})
         }} placeholder="رقم الصك" />
       </Form.Group>
@@ -40,6 +40,7 @@ function Step_Four(
         }}
         value={elsaq_date}
         placeholder="تاريخ الصك"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"

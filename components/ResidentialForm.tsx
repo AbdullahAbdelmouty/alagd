@@ -11,7 +11,7 @@ import Resid_Tanent_Form from "./ResidentialComponents/Resid_Tanent_Form";
 
 function ResidentialForm() {
     const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBackTwo} = useMultistepsForm([ <div key='0'>
-        <h2 className="text-center p-3 fs-4 fw-bold">هل أنت المالك أو المستأجر</h2></div>,<Resid_Owner_Form key='1'/>,<Resid_Tanent_Form key="3"/>]);
+        <h2 className="text-center p-3 fs-4 fw-bold mb-4">هل أنت المالك أو المستأجر</h2></div>,<Resid_Owner_Form key='1'/>,<Resid_Tanent_Form key="3"/>]);
 return (
     <>
         {step}

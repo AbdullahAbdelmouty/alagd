@@ -17,16 +17,16 @@ function Step_Five({
 }:UserFormProps) {
   return (
     <>
-         <h3 className='text-center fw-bold'>العنوان الوطني للعقار المأجر</h3>
+         <h3 className='text-center fw-bold mb-4'>العنوان الوطني للعقار المأجر</h3>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' value={city} onChange={e=>{
+        <Form.Control type="text" className='text-center' required value={city} onChange={e=>{
           console.log(e.target.value);
           
           updateFields({city: e.target.value})
         }} placeholder="المدينة" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' 
+        <Form.Control type="text" className='text-center'  required
         value={boycott}
          onChange={e=>{
           updateFields({boycott: e.target.value})

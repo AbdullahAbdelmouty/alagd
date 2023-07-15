@@ -163,7 +163,25 @@ a {
 
 .rmdp-input {
   text-align: center;
-  width: 336px;
-  border: 1px solid #dee2e6;
-  height: 40px;
+  width: 353px;
+  border: 1px solid #dee2e6 !important;
+  height: 40px !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none !important;
+  border: 1px solid #dee2e6 !important;
+  padding: 10px;
+  transition: padding 0.3s ease-out;
+}
+
+
+
+.btnGreen:hover {
+  background-color: #4f6986 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  transition: padding 0.3s ease-out;
+
 }

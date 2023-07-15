@@ -47,7 +47,7 @@ function Step_One(
   }
   return (
     <>
-    <h3 className='text-center fw-bold'>معلومات المالك</h3>
+    <h3 className='text-center fw-bold mb-4'>معلومات المالك</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center'  placeholder="هوية المالك" required value={addIdValue(owner_id)}  onChange={e => {
           updateFields({ owner_id: parseInt(e.target.value,10) })
@@ -74,6 +74,7 @@ function Step_One(
           },0)
         }}
         value={addBrValue(owner_br)}
+        required
         placeholder="تاريخ ميلاد المالك"
         calendar={arabic}
         locale={arabic_en}
@@ -83,7 +84,7 @@ function Step_One(
       </Form.Group>
       <h3 className='text-center fw-bold'>العنوان الوطني للمالك</h3>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' value={owner_city} onChange={e=>{
+        <Form.Control type="text" className='text-center' required value={owner_city} onChange={e=>{
           console.log(e.target.value);
           
           updateFields({owner_city: e.target.value})

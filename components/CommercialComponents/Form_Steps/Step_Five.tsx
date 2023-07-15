@@ -4,6 +4,10 @@ import { ChangeEvent , useState } from 'react';
 type Place ={
   city: string
   boycott: string
+  street: string
+  bulding_num: number
+  postal_code: number
+  addition_num: number
 }
 type UserFormProps = Place & {
   updateFields: (fields: Partial<Place>) => void
@@ -12,46 +16,56 @@ function Step_Five(
   {
     city,
     boycott,
+    street,
+    bulding_num,
+    postal_code,
+    addition_num,
     updateFields
   }:UserFormProps
 ) {
-    const [gregorianDate, setGregorianDate] = useState('');
-    const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const selectedDate = event.target.value;
-      const hijriDate = moment(selectedDate, 'YYYY-MM-DD').format('iYYYY/iM/iD');
-      setGregorianDate(selectedDate);
-      console.log(hijriDate);
-    };
+
   return (
     <>
-     <h3 className='text-center fw-bold'>العنوان الوطني للمحل</h3>
+     <h3 className='text-center fw-bold mb-4'>العنوان الوطني للمحل</h3>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="المدينة" />
+        <Form.Control type="text" className='text-center' value={city} onChange={e=>{
+          updateFields({city: e.target.value})
+        }} required placeholder="المدينة" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="الحي" />
+        <Form.Control type="text" className='text-center' required value={boycott} onChange={e=>{
+          updateFields({boycott: e.target.value})
+        }} placeholder="الحي" />
       </Form.Group>
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="الشارع" />
+        <Form.Control type="text" className='text-center'  required  value={street}  onChange={e=>{
+          updateFields({street: e.target.value})
+        }} placeholder="الشارع" />
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="رقم المبني" />
+        <Form.Control type="number" className='text-center' value={bulding_num}  onChange={e=>{
+          updateFields({bulding_num: parseInt(e.target.value)})
+        }} required placeholder="رقم المبني" />
       </Form.Group>
         </Col>
       </Row>
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="الرمز البريدي" />
+        <Form.Control type="number" className='text-center' value={postal_code}  onChange={e=>{
+          updateFields({postal_code: parseInt(e.target.value)})
+        }}  required placeholder="الرمز البريدي" />
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' placeholder="الرقم الاضافي" />
+        <Form.Control type="number" className='text-center' value={addition_num}  onChange={e=>{
+          updateFields({addition_num: parseInt(e.target.value)})
+        }} required placeholder="الرقم الاضافي" />
       </Form.Group>
         </Col>
       </Row>

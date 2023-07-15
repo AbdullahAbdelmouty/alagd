@@ -30,8 +30,8 @@ function Step_Four({
 }: UserFormProps) {
   return (
     <>
-     <h3 className='text-center fw-bold'>معلومات الصك</h3>
-     <Form.Select aria-label="Default select example" value={elsaq_type}  onChange={e=>
+     <h3 className='text-center fw-bold mb-4'>معلومات الصك</h3>
+     <Form.Select aria-label="Default select example" value={elsaq_type}   onChange={e=>
         {updateFields({elsaq_type: e.target.value})
     }}>
       <option className='text-center'>نوع الصحك</option>
@@ -42,7 +42,7 @@ function Step_Four({
       <option value="5">لايوجد صك</option>
     </Form.Select>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={elsaq_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={elsaq_num} onChange={e=>{
           updateFields({elsaq_num: parseInt(e.target.value)})
         }} placeholder="رقم الصك" />
       </Form.Group>
@@ -62,6 +62,7 @@ function Step_Four({
         }}
         value={elsaq_date}
         placeholder="تاريخ الصك"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"
@@ -71,14 +72,14 @@ function Step_Four({
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={floor_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={floor_num} onChange={e=>{
           updateFields({floor_num: parseInt(e.target.value)})
         }} placeholder="الدور" />
       </Form.Group>
         </Col>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={apartment_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={apartment_num} onChange={e=>{
           updateFields({apartment_num: parseInt(e.target.value)})
         }}  placeholder="رقم الشقة" />
       </Form.Group>
@@ -87,13 +88,13 @@ function Step_Four({
       <Row>
         <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={building_floors} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={building_floors} onChange={e=>{
           updateFields({building_floors: parseInt(e.target.value)})
         }}  placeholder="العمارة كم دور؟" />
       </Form.Group>
         </Col>
         <Col>
-        <Form.Select aria-label="Default select example" value={is_elevator} onChange={e=>
+        <Form.Select aria-label="Default select example" required value={is_elevator} onChange={e=>
         {updateFields({is_elevator: e.target.value})
     }}>
       <option className='text-center'>هل يوجد مصعد؟</option>
@@ -104,7 +105,7 @@ function Step_Four({
       </Row>
       <Col>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" className='text-center' value={room_num} onChange={e=>{
+        <Form.Control type="number" className='text-center' required value={room_num} onChange={e=>{
           updateFields({room_num: parseInt(e.target.value)})
         }}  placeholder="عدد غرف الشقة" />
       </Form.Group>

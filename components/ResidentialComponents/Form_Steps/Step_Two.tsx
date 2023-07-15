@@ -42,17 +42,17 @@ function Step_One({
   return (
 
     <>
-    <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
+    <h3 className='text-center fw-bold mb-4'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Control type="text" className='text-center'  placeholder="هوية المستأجر" required value={addIdValue(tanent_id)}  onChange={e => {
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
       </Form.Group>
          {tanent_check&&<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center form-control' value={owenr_name} disabled/>
+        <Form.Control type="text" className='text-center form-control' required value={owenr_name} disabled/>
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-        <Form.Control type="tel" className='text-center' placeholder="رقم جوال المستأجر في أبشر05xxxxx" required value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control type="tel" className='text-center' required placeholder="رقم جوال المستأجر في أبشر05xxxxx"  value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <DatePicker
@@ -70,6 +70,7 @@ function Step_One({
         }}
         value={addBrValue(tanent_br)}
         placeholder="تاريخ ميلاد المستأجر"
+        required
         calendar={arabic}
         locale={arabic_en}
         calendarPosition="bottom-right"
