@@ -9,6 +9,7 @@ import Step_Two from "./Form_Steps/Step_Two";
 import Step_Three from "./Form_Steps/Step_Three";
 import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
+import Step_Six from "../ResidentialComponents/Form_Steps/Step_Six";
 import Swal from 'sweetalert2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
@@ -101,6 +102,8 @@ function Resid_Tanent_Form() {
     <Step_Three key="2" {...formData} updateFields={updateFields}/>,
     <Step_Four key="3" {...formData} updateFields={updateFields}/>,
     <Step_Five key="4" {...formData} updateFields={updateFields}/>,
+    <Step_Six key="5" {...formData} updateFields={updateFields}/>
+
   ]);
     const postData = async () => {
       const url = 'https://stage.al3gd.com/order/check-nid'; // Replace with your API endpoint URL

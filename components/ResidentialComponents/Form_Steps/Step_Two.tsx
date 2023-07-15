@@ -56,6 +56,9 @@ function Step_One({
       </Form.Group>}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
         <Form.Control type="tel" className='text-center' required maxLength={10} minLength={10} placeholder="رقم جوال المستأجر في أبشر05xxxxx"  value={addPhoneValue(tanent_phone)} onChange={e=> updateFields({tanent_phone: parseInt(e.target.value,10)})}/>
+        <Form.Control.Feedback type="invalid">
+        رقم جوال أبشر مطلوب          
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
         <DatePicker
