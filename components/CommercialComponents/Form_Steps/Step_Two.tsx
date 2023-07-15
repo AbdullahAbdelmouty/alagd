@@ -47,7 +47,7 @@ function Step_Two(
     <>
     <h3 className='text-center fw-bold'>معلومات المستأجر</h3>
     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" className='text-center' placeholder="هوية المستأجر" required maxLength={10} minLength={10} value={addIdValue(tanent_id)}  onChange={e => {
+        <Form.Control type="number" className='text-center' placeholder="هوية المستأجر" required maxLength={10} minLength={10} value={addIdValue(tanent_id)}  onChange={e => {
           updateFields({ tanent_id: parseInt(e.target.value,10) })
           }}/>
           <Form.Control.Feedback type="invalid">
