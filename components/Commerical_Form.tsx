@@ -1,5 +1,5 @@
 import { useMultistepsForm } from "@/useMultiForm";
-import { FormEvent } from 'react';
+import { FormEvent,useState,useEffect } from 'react';
 import {Container ,Button,Row,Col,Card} from 'react-bootstrap';
 import Image from 'next/image';
 import Fork from "./Fork";
@@ -8,9 +8,11 @@ import Tanent from '../public/img/tanent.png'
 import Resid_Owner_Form from "./CommercialComponents/Resid_Owner_Form";
 import Resid_Tanent_Form from "./CommercialComponents/Resid_Tanent_Form";
 
-function Commerical_Form() {
+function Commerical_Form({setBackBtn}: {setBackBtn:Function}) {
+const [backToProperty,setBackToProperty] = useState(false);
     const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBackTwo} = useMultistepsForm([ <div key='0'>
-    <h2 className="text-center p-3 fs-4 fw-bold mb-4">هل أنت المالك أو المستأجر</h2></div>,<Resid_Owner_Form key='1'/>,<Resid_Tanent_Form key="3"/>]);
+    <h2 className="text-center p-3 fs-4 fw-bold mb-4">هل أنت المالك أو المستأجر</h2></div>,<Resid_Owner_Form setBackBtn2={setBackBtn}  setBackToProperty={setBackToProperty}  key='1'/>,<Resid_Tanent_Form setBackBtn2={setBackBtn}  setBackToProperty={setBackToProperty}   key="3"/>]);
+                useEffect(() => {setBackBtn(true);}, [isFirstStep]);
 return (
 <>
     {step}
@@ -41,8 +43,8 @@ return (
 </Row>
 </>}
     <div className=" d-flex justify-content-center">
-    {!isFirstStep && <Button type="button" variant="primary" className='btnGreen' onClick={customeBackTwo}>
-        الرجوع لتحديد الملكية
+    {(!isFirstStep && backToProperty)&&<Button type="button" variant="primary" className='btnPostion2' onClick={customeBackTwo}>
+        السابق
     </Button>}
     </div>
 </>

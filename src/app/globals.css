@@ -142,7 +142,22 @@ a {
   border: 0 !important;
   margin: 5px;
 }
-
+.btnPostion{
+  position: relative !important;
+  bottom: 0;
+  right: 50px;
+  background-color: #22b573 !important;
+  border: 0 !important;
+  margin: 5px;
+}
+.btnPostion2{
+  position: relative !important;
+  top: -54px;
+  left: 40px;
+  background-color: #22b573 !important;
+  border: 0 !important;
+  margin: 5px;
+}
 .btnGreenSteps{
   background-color: #22b573 !important;
   border: 0 !important;

@@ -1,7 +1,7 @@
 "use client"
 import {Container ,Button,Row,Col} from 'react-bootstrap';
 import {useMultistepsForm} from '../../useMultiForm'
-import { FormEvent } from 'react';
+import { FormEvent ,useState} from 'react';
 import Notes from '../../../components/Notes';
 import { Card } from "react-bootstrap"
 import Fork from '../../../components/Fork';
@@ -11,9 +11,11 @@ import Commercial from '../../../public/img/commercial_contract.png'
 import ResidentialForm from '../../../components/ResidentialForm';
 import Commerical_Form from '../../../components/Commerical_Form';
 
-
 function Order() {
-  const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBack} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm key='2'/>,<Commerical_Form key={3}/>]);
+
+  const [backBtn,setBackBtn] = useState(true);
+  
+  const {next,back,step,steps,currentStepIndex,isFirstStep,isLastStep,goTo,customeBack} = useMultistepsForm([<Notes key="0"/>,<Fork  key="1"/>,<ResidentialForm setBackBtn={setBackBtn} key='2'/>,<Commerical_Form setBackBtn={setBackBtn} key={3}/>]);
   return (
 <>
     <Container fluid className='d-flex justify-content-center align-items-center orderPage' >
@@ -52,7 +54,7 @@ function Order() {
       </Card.Body>
       <Card.Body className='d-flex justify-content-center align-items-center p-0'>
       {isFirstStep&&<Button variant="primary" className='btnGreen' onClick={next}>التالي</Button>}
-        {!isFirstStep&&<Button variant="primary" className='btnGreen ps-3 pe-3' onClick={customeBack}>{currentStepIndex>1? "الرجوع لتحديد العقار":"رجوع"}</Button>}
+        {(!isFirstStep && backBtn)&&<Button variant="primary" className='btnGreen ps-3 pe-3' onClick={customeBack}>{"السابق"}</Button>}
       </Card.Body>
     </Card>
     </Container>

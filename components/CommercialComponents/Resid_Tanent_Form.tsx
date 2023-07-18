@@ -12,8 +12,9 @@ import Step_Five from "./Form_Steps/Step_Five";
 import Step_Six from "../ResidentialComponents/Form_Steps/Step_Six";
 import Swal from 'sweetalert2';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { set } from "react-hook-form";
 
-function Resid_Tanent_Form() {
+function Resid_Tanent_Form({setBackBtn2,setBackToProperty}:{setBackBtn2:Function,setBackToProperty:Function}) {
   type FormData = {
     owner_id: number
     owner_phone: number
@@ -235,6 +236,11 @@ function Resid_Tanent_Form() {
             goTo(4)
           }
             }
+            setBackBtn2(false);
+            currentStepIndex === 0 && setBackToProperty(true);
+            currentStepIndex > 0 && setBackToProperty(false);
+
+
   return (
     <>
     {!isLastStep&&<div className="setpsContainer">
@@ -259,8 +265,10 @@ function Resid_Tanent_Form() {
     </div>}
     <Form onSubmit={onSubmit} className="p-2">
         {step}
-        {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
-        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
+        <div className="d-flex justify-content-center">
+        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>السابق</Button>}
+        {!isLastStep&&<Button variant="primary" className={isFirstStep?"btnPostion":"btnGreen"}  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        </div>
     </Form>
     </>
   )

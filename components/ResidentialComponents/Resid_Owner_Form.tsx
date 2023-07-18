@@ -14,7 +14,7 @@ import Step_Six from "./Form_Steps/Step_Six";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import ProgressBar from 'react-bootstrap/ProgressBar';
-function Resid_Owner_Form() {
+function Resid_Owner_Form({setBackBtn2,setBackToProperty}:{setBackBtn2:Function,setBackToProperty:Function}) {
   type FormData = {
     owner_id: number
     owner_phone: number
@@ -220,6 +220,10 @@ function Resid_Owner_Form() {
           goTo(4)
         }
           }
+
+          setBackBtn2(false);
+          currentStepIndex === 0 && setBackToProperty(true);
+          currentStepIndex > 0 && setBackToProperty(false);
   return (
     <>
     {!isLastStep&&<div className="setpsContainer">
@@ -244,8 +248,10 @@ function Resid_Owner_Form() {
     </div>}
     <Form onSubmit={onSubmit} noValidate validated={validated}  className="p-2 form">
         {step}
-        {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
-        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
+        <div className="d-flex justify-content-center">
+        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>السابق</Button>}
+        {!isLastStep&&<Button variant="primary" className={isFirstStep?"btnPostion":"btnGreen"}  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        </div>
     </Form>
     </>
 

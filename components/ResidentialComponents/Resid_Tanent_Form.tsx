@@ -12,7 +12,7 @@ import Step_Three from "./Form_Steps/Step_Three";
 import Step_Four from "./Form_Steps/Step_Four";
 import Step_Five from "./Form_Steps/Step_Five";
 import Step_Six from "./Form_Steps/Step_Six";
-function Resid_Tanent_Form() {
+function Resid_Tanent_Form({setBackBtn2,setBackToProperty}:{setBackBtn2:Function,setBackToProperty:Function}) {
   type FormData = {
     owner_id: number
     owner_phone: number
@@ -212,6 +212,10 @@ function Resid_Tanent_Form() {
             goTo(4)
           }
             }
+
+            setBackBtn2(true);
+            currentStepIndex === 0 && setBackBtn2(false);
+            currentStepIndex > 0 && setBackBtn2(true);
       
   return (
     <>
@@ -237,8 +241,11 @@ function Resid_Tanent_Form() {
     </div>}
     <Form onSubmit={onSubmit}  noValidate validated={validated}  className="p-2">
         {step}
-        {!isLastStep&&<Button variant="primary" className='btnGreen'  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
-        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>رجوع</Button>}
+        <div className="d-flex justify-content-center">
+        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>السابق</Button>}
+        {!isLastStep&&<Button variant="primary" className={isFirstStep?"btnPostion":"btnGreen"} type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        </div>
+
     </Form>
     </>
   )
