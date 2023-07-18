@@ -24,7 +24,7 @@ function Order() {
         {step}
         {/*two buttons that represent the choice of commercial or Residential*/}
         {currentStepIndex ===1 && <Row>
-            <Col>
+            <Col className='d-flex justify-content-center'>
             <button className='btnImage' type='button' onClick={()=>{goTo(2)}}>
             <Image className='rounded-3'
               src={Residential}
@@ -36,7 +36,7 @@ function Order() {
             <span>شقة/عمارة</span>
             </button>
             </Col>
-            <Col>
+            <Col className='d-flex justify-content-center'>
             <button className='btnImage' type='button' onClick={()=>{goTo(3)}}>
             <Image className='rounded-3'
               src={Commercial}

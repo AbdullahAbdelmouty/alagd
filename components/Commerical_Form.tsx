@@ -16,7 +16,7 @@ return (
     {step}
     {isFirstStep &&  <>
 <Row>
-    <Col>
+    <Col className="d-flex justify-content-center">
     <button className='btnImage' type='button' onClick={()=>{goTo(1)}}>
     <Image className='rounded-3'
         src={Owner}
@@ -27,7 +27,7 @@ return (
     <p className='mb-1 p-2 fs-5 fw-normal'>أنا المالك</p>
     </button>
     </Col>
-    <Col>
+    <Col className="d-flex justify-content-center">
     <button className='btnImage' type='button' onClick={()=>{goTo(2)}} >
     <Image className='rounded-3'
         src={Tanent}
