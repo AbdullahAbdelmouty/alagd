@@ -142,6 +142,24 @@ a {
   border: 0 !important;
   margin: 5px;
 }
+.btnGreen:hover {
+  background-color: #4f6986 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  transition: padding 0.3s ease-out;
+}
+.btnBlue{
+  background-color: #22b573 !important;
+  border: 0 !important;
+  margin: 5px;
+  background-image: -webkit-linear-gradient(0deg, #a1c4fd 0%, #884d80 0%, #2b5876 0%, #4e4376 100%);
+}
+.btnPrev{
+  background-color: #efefef !important;
+  color: #555 !important;
+  border: 0 !important;
+  margin: 5px;
+}
 .btnPostion{
   position: relative !important;
   bottom: 0;
@@ -149,12 +167,15 @@ a {
   background-color: #22b573 !important;
   border: 0 !important;
   margin: 5px;
+  background-image: -webkit-linear-gradient(0deg, #a1c4fd 0%, #884d80 0%, #2b5876 0%, #4e4376 100%);
+
 }
 .btnPostion2{
   position: relative !important;
   top: -54px;
   left: 40px;
-  background-color: #22b573 !important;
+  background-color: #efefef !important;
+  color: #555 !important;
   border: 0 !important;
   margin: 5px;
 }
@@ -204,10 +225,3 @@ input:focus {
 }
 
 
-.btnGreen:hover {
-  background-color: #4f6986 !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-  transition: padding 0.3s ease-out;
-
-}

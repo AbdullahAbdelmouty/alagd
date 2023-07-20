@@ -249,9 +249,13 @@ function Resid_Owner_Form({setBackBtn2,setBackToProperty}:{setBackBtn2:Function,
     <Form onSubmit={onSubmit} noValidate validated={validated}  className="p-2 form">
         {step}
         <div className="d-flex justify-content-center">
-        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnGreen' onClick={back}>السابق</Button>}
-        {!isLastStep&&<Button variant="primary" className={isFirstStep?"btnPostion":"btnGreen"}  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
+        {(currentStepIndex<5&&currentStepIndex>0)&&<Button variant="primary" className='btnPrev' onClick={back}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg> السابق</Button>}
+        {!isLastStep&&<Button variant="primary" className={isFirstStep?"btnPostion":"btnBlue"}  type="submit" >{isLastStep ? "ارسال" : "التالي"}</Button>}
         </div>
+
     </Form>
     </>
 
